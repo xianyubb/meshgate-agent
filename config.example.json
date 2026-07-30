@@ -1,0 +1,6 @@
+{
+  "apiHost": "127.0.0.1",
+  "apiPort": 31920,
+  "bearerToken": "replace-with-the-same-token-as-meshgate",
+  "command": "meshgate"
+}

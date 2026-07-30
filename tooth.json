@@ -1,0 +1,90 @@
+{
+  "format_version": 3,
+  "format_uuid": "d02e9225-1d91-4439-ae98-8598d47cd78f",
+  "tooth": "github.com/meshgate/meshgate-agent",
+  "version": "0.1.0",
+  "info": {
+    "name": "meshgate-agent",
+    "description": "LeviLamina command bridge for MeshGate seamless backend handoff",
+    "tags": [
+      "platform:levilamina",
+      "type:mod",
+      "meshgate"
+    ],
+    "avatar_url": ""
+  },
+  "variants": [
+    {
+      "label": "",
+      "platform": "win-x64",
+      "dependencies": {
+        "github.com/LiteLDev/LeviLamina": "1.8.*"
+      },
+      "assets": [
+        {
+          "type": "zip",
+          "urls": [
+            "https://{{tooth}}/releases/download/v{{version}}/meshgate-agent-server-windows-x64.zip"
+          ],
+          "placements": [
+            {
+              "type": "dir",
+              "src": "meshgate-agent/",
+              "dest": "plugins/meshgate-agent/"
+            }
+          ]
+        }
+      ],
+      "preserve_files": [
+        "plugins/meshgate-agent/config/config.json"
+      ],
+      "remove_files": [],
+      "scripts": {
+        "pre_install": [],
+        "install": [],
+        "post_install": [],
+        "pre_pack": [],
+        "post_pack": [],
+        "pre_uninstall": [],
+        "uninstall": [],
+        "post_uninstall": []
+      }
+    },
+    {
+      "label": "client",
+      "platform": "win-x64",
+      "dependencies": {
+        "github.com/LiteLDev/LeviLamina#client": "1.8.*"
+      },
+      "assets": [
+        {
+          "type": "zip",
+          "urls": [
+            "https://{{tooth}}/releases/download/v{{version}}/meshgate-agent-client-windows-x64.zip"
+          ],
+          "placements": [
+            {
+              "type": "dir",
+              "src": "meshgate-agent/",
+              "dest": "mods/meshgate-agent/"
+            }
+          ]
+        }
+      ],
+      "preserve_files": [
+        "mods/meshgate-agent/config/config.json"
+      ],
+      "remove_files": [],
+      "scripts": {
+        "pre_install": [],
+        "install": [],
+        "post_install": [],
+        "pre_pack": [],
+        "post_pack": [],
+        "pre_uninstall": [],
+        "uninstall": [],
+        "post_uninstall": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+# Build output
+/build/
+/bin/
+/out/
+/dist/
+
+# xmake generated files
+/.xmake/
+
+# Local caches
+/.cache/
+/.tmp/
+/.agents/
+
+# Compile database generated locally
+/compile_commands.json
+
+# Binaries and libraries
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.obj
+*.exp
+*.a
+*.so
+*.dylib
+
+# Logs and dumps
+*.log
+*.dmp
+*.dump
+crash*/
+
+# Editor and OS files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.swp
+*.tmp
+Thumbs.db
+Desktop.ini
