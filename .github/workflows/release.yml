@@ -31,18 +31,6 @@ jobs:
           New-Item -ItemType Directory -Force dist | Out-Null
           Copy-Item -Recurse bin/meshgate-agent dist/meshgate-agent
           Compress-Archive -Path dist/meshgate-agent -DestinationPath meshgate-agent-server-windows-x64.zip
-          Remove-Item -Recurse -Force dist/meshgate-agent
-
-      - name: Build (client variant)
-        run: |
-          xmake f -m release --target_type=client -y
-          xmake build -r -y
-
-      - name: Package (client variant)
-        shell: pwsh
-        run: |
-          Copy-Item -Recurse bin/meshgate-agent dist/meshgate-agent
-          Compress-Archive -Path dist/meshgate-agent -DestinationPath meshgate-agent-client-windows-x64.zip
 
       - name: Write release notes
         shell: pwsh
@@ -54,12 +42,11 @@ jobs:
 
           - 从 MeshGate Login 的 `DeviceModel` / `DeviceId` carrier 读取玩家 XUID。
           - 在 BDS Login 校验与创建玩家阶段恢复 XUID、UUID、PlayFabId、Xbox Live 名称与公钥，并标记为完整认证身份。
-          - 提供 server / client 两种 LeviLamina 形态的发行包。完整变更见仓库 `CHANGELOG.md`。
+          - 提供 LeviLamina 服务端形态的发行包。完整变更见仓库 `CHANGELOG.md`。
 
           ## 安装
 
           - `meshgate-agent-server-windows-x64.zip`：服务端模组，解压至服务器 `plugins/` 目录。
-          - `meshgate-agent-client-windows-x64.zip`：客户端模组，解压至 `mods/` 目录。
           - 亦可通过 `tooth.json` 使用 lip 安装，资产地址已指向本 Release。
           "@ | Set-Content -Encoding utf8 release-notes.md
 
@@ -70,6 +57,5 @@ jobs:
         run: |
           gh release create "${{ github.ref_name }}" `
             meshgate-agent-server-windows-x64.zip `
-            meshgate-agent-client-windows-x64.zip `
             --title "meshgate-agent ${{ github.ref_name }}" `
             --notes-file release-notes.md

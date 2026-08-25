@@ -22,8 +22,3 @@ jobs:
         run: |
           xmake f -m release --target_type=server -y
           xmake build -y
-
-      - name: Build (client variant)
-        run: |
-          xmake f -m release --target_type=client -y
-          xmake build -r -y

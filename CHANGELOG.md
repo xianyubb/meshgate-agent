@@ -11,7 +11,7 @@
 - 将恢复后的玩家身份标记为完整认证类型，供 BDS 正确建立玩家身份。
 - 增加 Login 身份 carrier、字段结构和注入阶段的诊断日志。
 - 新增 GitHub Actions `Build`（push/PR 构建）与 `Release`（tag 推送自动发布）工作流。
-- 修正 `tooth.json` 仓库地址为 `github.com/xianyubb/meshgate-agent`，使 lip 安装指向实际 Release 资产。
+- 修正 `tooth.json` 仓库地址为 `github.com/xianyubb/meshgate-agent`，并移除 client 变体，使 lip 安装指向实际 Release 资产。
 
 ### Verification
 
