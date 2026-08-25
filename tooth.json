@@ -1,7 +1,7 @@
 {
   "format_version": 3,
   "format_uuid": "d02e9225-1d91-4439-ae98-8598d47cd78f",
-  "tooth": "github.com/meshgate/meshgate-agent",
+  "tooth": "github.com/xianyubb/meshgate-agent",
   "version": "0.1.0",
   "info": {
     "name": "meshgate-agent",

@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  windows-clang:
+    name: Windows x64 (clang-cl, Release)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup xmake
+        uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - name: Build (server variant)
+        run: |
+          xmake f -m release --target_type=server -y
+          xmake build -y
+
+      - name: Build (client variant)
+        run: |
+          xmake f -m release --target_type=client -y
+          xmake build -r -y
