@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1] - 2026-08-30
+
+### Fixed
+
+- Show the MeshGate handoff message to command users instead of raw HTTP output.
+- Remove the obsolete DedicatedServer initialization hook for LeviLamina 26.20.7 compatibility.
+
 ## [0.1.0] - 2026-08-26
 
 首个发行版本。

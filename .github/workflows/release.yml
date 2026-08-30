@@ -36,13 +36,12 @@ jobs:
         shell: pwsh
         run: |
           @"
-          meshgate-agent 首个发行版本：LeviLamina 上的 MeshGate 命令桥接模组，需配合 MeshGate 中继使用。
+          meshgate-agent 补丁版本：改善传送失败提示并更新 LeviLamina 兼容性。
 
-          ## 亮点
+          ## 修复
 
-          - 从 MeshGate Login 的 `DeviceModel` / `DeviceId` carrier 读取玩家 XUID。
-          - 在 BDS Login 校验与创建玩家阶段恢复 XUID、UUID、PlayFabId、Xbox Live 名称与公钥，并标记为完整认证身份。
-          - 提供 LeviLamina 服务端形态的发行包。完整变更见仓库 `CHANGELOG.md`。
+          - `/meshgate` 传送失败时仅显示 MeshGate 返回的简明原因，不再输出原始 HTTP 响应。
+          - 移除 LeviLamina 26.20.7 已不存在的 DedicatedServer 初始化钩子。
 
           ## 安装
 

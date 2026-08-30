@@ -17,7 +17,7 @@ end
 
 target("meshgate-agent")
     add_rules("@levibuildscript/linkrule")
-    add_rules("@levibuildscript/modpacker", {modVersion = "0.1.0"})
+    add_rules("@levibuildscript/modpacker", {modVersion = "0.1.1"})
     if is_plat("windows") then
         add_defines("NOMINMAX", "UNICODE")
         set_exceptions("none")

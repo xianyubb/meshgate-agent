@@ -18,8 +18,6 @@
 #include "mc/network/ConnectionRequest.h"
 #include "mc/network/ServerNetworkHandler.h"
 #include "mc/network/packet/LoginPacket.h"
-#include "mc/server/DedicatedServer.h"
-#include "mc/server/PropertiesSettings.h"
 #include "mc/server/commands/CommandOrigin.h"
 #include "mc/server/commands/CommandOutput.h"
 #include "mc/server/commands/CommandPermissionLevel.h"
@@ -383,15 +381,6 @@ bool MeshGateAgent::disable() {
 }
 
 } // namespace meshgate_agent
-
-LL_AUTO_TYPE_INSTANCE_HOOK(PropertiesSettingsisClientSideGenEnabledHook,
-                           HookPriority::Normal, DedicatedServer,
-                           &DedicatedServer::initializeHttp, void,
-                           PropertiesSettings const &properties) {
-  auto &properties_modiy = const_cast<PropertiesSettings &>(properties);
-  properties_modiy.mClientSideGenerationEnabled = false;
-  return origin(properties_modiy);
-}
 
 LL_REGISTER_MOD(meshgate_agent::MeshGateAgent,
                 meshgate_agent::MeshGateAgent::getInstance());

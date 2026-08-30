@@ -23,6 +23,43 @@ std::string jsonEscape(std::string_view value) {
     return out;
 }
 
+std::string jsonStringField(std::string_view json, std::string_view key) {
+    const auto quotedKey = std::string{"\""} + std::string{key} + '"';
+    const auto keyPos = json.find(quotedKey);
+    if (keyPos == std::string_view::npos) return {};
+
+    const auto colon = json.find(':', keyPos + quotedKey.size());
+    if (colon == std::string_view::npos) return {};
+    const auto firstQuote = json.find('"', colon + 1);
+    if (firstQuote == std::string_view::npos) return {};
+
+    std::string result;
+    bool escaped = false;
+    for (std::size_t i = firstQuote + 1; i < json.size(); ++i) {
+        const auto character = json[i];
+        if (escaped) {
+            result.push_back(character);
+            escaped = false;
+        } else if (character == '\\') {
+            escaped = true;
+        } else if (character == '"') {
+            return result;
+        } else {
+            result.push_back(character);
+        }
+    }
+    return {};
+}
+
+std::string handoffErrorMessage(std::string_view response) {
+    const auto bodyStart = response.find("\r\n\r\n");
+    const auto body = bodyStart == std::string_view::npos ? response : response.substr(bodyStart + 4);
+    if (const auto message = jsonStringField(body, "message"); !message.empty()) {
+        return message;
+    }
+    return "MeshGate rejected the transfer";
+}
+
 class WsaSession {
 public:
     WsaSession() : mOk(WSAStartup(MAKEWORD(2, 2), &mData) == 0) {}
@@ -125,9 +162,9 @@ bool postHandoff(
     }
 
     raw.resize(static_cast<std::size_t>(received));
-    response = raw;
-
-    return raw.starts_with("HTTP/1.1 200") || raw.starts_with("HTTP/1.0 200");
+    const auto accepted = raw.starts_with("HTTP/1.1 200") || raw.starts_with("HTTP/1.0 200");
+    response = accepted ? "" : handoffErrorMessage(raw);
+    return accepted;
 }
 
 } // namespace meshgate_agent
